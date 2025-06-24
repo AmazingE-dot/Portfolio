@@ -1,0 +1,39 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { src, alt, class: className = "", width, height } = Astro.props;
+---
+
+<img
+  data-src={src}
+  alt={alt}
+  class={`lazy ${className}`}
+  width={width}
+  height={height}
+  loading="lazy"
+/>
+
+<script>
+  const images = document.querySelectorAll("img[data-src]");
+
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target as HTMLImageElement;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.classList.remove("lazy");
+          imageObserver.unobserve(img);
+        }
+      }
+    });
+  });
+
+  images.forEach((img) => imageObserver.observe(img));
+</script>

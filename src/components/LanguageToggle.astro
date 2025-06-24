@@ -1,0 +1,139 @@
+---
+import "../styles/global.css";
+---
+
+<div class="relative">
+  <button id="language-toggle" class="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+    </svg>
+    <span id="current-lang">ES</span>
+    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  
+  <div id="language-menu" class="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden">
+    <div class="py-1">
+      <button class="language-option w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" data-lang="es">
+        🇪🇸 Español
+      </button>
+      <button class="language-option w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" data-lang="en">
+        🇺🇸 English
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const languageToggle = document.getElementById('language-toggle');
+    const languageMenu = document.getElementById('language-menu');
+    const currentLangSpan = document.getElementById('current-lang');
+    const languageOptions = document.querySelectorAll('.language-option');
+    
+    let currentLang = localStorage.getItem('language') || 'es';
+    currentLangSpan!.textContent = currentLang.toUpperCase();
+    
+    languageToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      languageMenu?.classList.toggle('hidden');
+    });
+    
+    document.addEventListener('click', () => {
+      languageMenu?.classList.add('hidden');
+    });
+    
+    languageOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        const selectedLang = (e.target as HTMLElement).dataset.lang;
+        if (selectedLang && selectedLang !== currentLang) {
+          currentLang = selectedLang;
+          currentLangSpan!.textContent = selectedLang.toUpperCase();
+          localStorage.setItem('language', selectedLang);
+          
+          updatePageContent(selectedLang);
+          
+          languageMenu?.classList.add('hidden');
+        }
+      });
+    });
+    
+    updatePageContent(currentLang);
+  });
+  
+  function updatePageContent(lang: string) {
+    const translations = {
+      es: {
+        // Navigation
+        'nav-inicio': 'Inicio',
+        'nav-sobre-mi': 'Sobre Mí',
+        'nav-proyectos': 'Proyectos',
+        'nav-habilidades': 'Habilidades',
+        'nav-contacto': 'Contacto',
+        
+        // Hero
+        'hero-greeting': 'Hola, soy',
+        'hero-description': 'Ingeniero de Sistemas con 3 años de experiencia en desarrollo fullstack. Creador del agente de IA ganador en la 3ra Conferencia Internacional de IA para empresas del Minuto de Dios usando Microsoft Copilot Studio.',
+        'hero-btn-projects': 'Ver Proyectos',
+        'hero-btn-contact': 'Contáctame',
+        
+        // About
+        'about-title': 'Sobre Mí',
+        'about-subtitle': 'Ingeniero de Sistemas apasionado por la innovación tecnológica y la inteligencia artificial',
+        
+        // Projects
+        'projects-title': 'Mis Proyectos',
+        'projects-subtitle': 'Una selección de mis trabajos más destacados en desarrollo web e inteligencia artificial',
+        
+        // Skills
+        'skills-title': 'Mis Habilidades',
+        'skills-subtitle': 'Tecnologías y herramientas que domino para crear soluciones innovadoras',
+        
+        // Contact
+        'contact-title': 'Hablemos Juntos',
+        'contact-subtitle': '¿Tienes un proyecto en mente? Me encantaría conocer más sobre tus ideas y cómo puedo ayudarte'
+      },
+      en: {
+        // Navigation  
+        'nav-inicio': 'Home',
+        'nav-sobre-mi': 'About Me',
+        'nav-proyectos': 'Projects',
+        'nav-habilidades': 'Skills',
+        'nav-contacto': 'Contact',
+        
+        // Hero
+        'hero-greeting': 'Hi, I am',
+        'hero-description': 'Systems Engineer with 3 years of experience in fullstack development. Creator of the winning AI agent at the 3rd International AI Conference for Minuto de Dios companies using Microsoft Copilot Studio.',
+        'hero-btn-projects': 'View Projects',
+        'hero-btn-contact': 'Contact Me',
+        
+        // About
+        'about-title': 'About Me',
+        'about-subtitle': 'Systems Engineer passionate about technological innovation and artificial intelligence',
+        
+        // Projects
+        'projects-title': 'My Projects',
+        'projects-subtitle': 'A selection of my most outstanding work in web development and artificial intelligence',
+        
+        // Skills
+        'skills-title': 'My Skills',
+        'skills-subtitle': 'Technologies and tools I master to create innovative solutions',
+        
+        // Contact
+        'contact-title': "Let's Talk Together",
+        'contact-subtitle': 'Do you have a project in mind? I would love to learn more about your ideas and how I can help you'
+      }
+    };
+    
+    // Update text content
+    const currentTranslations = translations[lang as keyof typeof translations];
+    
+    Object.entries(currentTranslations).forEach(([key, value]) => {
+      const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
+      elements.forEach(element => {
+        element.textContent = value;
+      });
+    });
+  }
+</script>

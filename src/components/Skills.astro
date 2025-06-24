@@ -1,0 +1,150 @@
+---
+import "../styles/global.css";
+
+const skillCategories = [
+  
+  {
+    title: "Backend",
+    icon: "⚙️",
+    skills: [
+      { name: "PHP", level: 88, color: "from-purple-500 to-pink-500" },
+      { name: "NodeJS", level: 82, color: "from-orange-500 to-red-500" },
+      { name: "Firebase", level: 78, color: "from-red-500 to-pink-500" },
+      { name: "MySQL", level: 75, color: "from-blue-600 to-indigo-600" },
+      { name: "MongoDB", level: 75, color: "from-blue-600 to-indigo-600" },
+    ],
+  },
+  {
+    title: "Frontend",
+    icon: "🎨",
+    skills: [
+      { name: "React", level: 85, color: "from-blue-500 to-cyan-500" },
+      { name: "Angular", level: 80, color: "from-blue-600 to-purple-600" },
+      { name: "JavaScript", level: 90, color: "from-yellow-500 to-orange-500" },
+      { name: "Astro", level: 95, color: "from-teal-500 to-blue-500" },
+    ],
+  },
+  {
+    title: "Otros",
+    icon: "🤖",
+    skills: [
+      {
+        name: "Copilot Studio",
+        level: 92,
+        color: "from-green-500 to-teal-500",
+      },
+      {
+        name: "Análisis de Datos",
+        level: 75,
+        color: "from-pink-500 to-rose-500",
+      },
+    ],
+  },
+];
+---
+
+<section id="habilidades" class="py-20 bg-white dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+      >
+        Mis <span class="gradient-text">Habilidades</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Tecnologías y herramientas que domino para crear soluciones innovadoras
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        skillCategories.map((category, categoryIndex) => (
+          <div class="skill-category">
+            <div class="flex items-center mb-6">
+              <div class="text-3xl mr-3">{category.icon}</div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                {category.title}
+              </h3>
+            </div>
+
+            <div class="space-y-4">
+              {category.skills.map((skill, skillIndex) => (
+                <div class="skill-item">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700 dark:text-gray-300 font-medium">
+                      {skill.name}
+                    </span>
+                    <span class="text-gray-500 dark:text-gray-400 text-sm">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div
+                      class={`skill-bar bg-gradient-to-r ${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
+                      data-width={skill.level}
+                      style={`--delay: ${(categoryIndex * category.skills.length + skillIndex) * 200}ms`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Additional Skills Cloud -->
+    <div class="mt-16 text-center">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+        Otras Tecnologías
+      </h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        {
+          [
+            "Git",
+            "GitHub",
+            "Astro",
+            "VS Code",
+            "Figma",
+            "API REST",
+            "Bootstrap",
+            "Tailwind",
+            "Webpack",
+            "NPM",
+            "Composer",
+          ].map((tech) => <span class="tech-cloud-item">{tech}</span>)
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const skillBars = entry.target.querySelectorAll(".skill-bar");
+          skillBars.forEach((bar) => {
+            const el = bar as HTMLElement;
+            const width = el.dataset.width;
+            if (width) {
+              el.style.setProperty("--width", width + "%");
+              el.classList.add("animate");
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    const skillsSection = document.getElementById("habilidades");
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
+  });
+</script>
