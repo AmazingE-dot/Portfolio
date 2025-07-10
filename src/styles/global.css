@@ -49,6 +49,19 @@
     animation: floating 6s ease-in-out infinite;
   }
 
+  .tech-badge {
+    @apply p-2 rounded-lg;
+  }
+
+  .skill-bar {
+    width: 0;
+    transition: width 1s ease-out;
+  }
+
+  .skill-bar.animate {
+    width: var(--width);
+  }
+
   @keyframes floating {
     0%,
     100% {

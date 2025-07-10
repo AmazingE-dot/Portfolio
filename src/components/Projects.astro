@@ -27,7 +27,7 @@ const projects = [
     title: "Aplicación de inventario y facturación",
     description: "Aplicación moderna desarrollada con React, TanStack, Firebase y TailwindCSS. Incluye autenticación y base de datos en tiempo real.",
     technologies: ["React", "TanStack", "Firebase", "TailwindCSS"],
-    image: "",
+    image: "/Projects/FacturaciónInventario.png",
     featured: false,
     githubUrl: "#",
     liveUrl: "#"
@@ -76,7 +76,7 @@ const projects = [
               {project.description}
             </p>
             
-            <div class="flex flex-wrap gap-2 mb-6">
+            <div class="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
                 <span class="px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded text-xs font-medium">
                   {tech}
@@ -84,7 +84,7 @@ const projects = [
               ))}
             </div>
             
-            <div class="flex space-x-4">
+            {/* <div class="flex space-x-4">
               <a 
                 href={project.githubUrl} 
                 class="flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
@@ -103,7 +103,7 @@ const projects = [
                 </svg>
                 Ver Demo
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       ))}
