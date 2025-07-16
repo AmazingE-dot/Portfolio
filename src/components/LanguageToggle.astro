@@ -1,24 +1,45 @@
 ---
-import "../styles/global.css";
+// src/components/LanguageToggle.astro
 ---
 
 <div class="relative">
-  <button id="language-toggle" class="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+  <button
+    id="language-toggle"
+    class="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+  >
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+      ></path>
     </svg>
     <span id="current-lang">ES</span>
     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"></path>
     </svg>
   </button>
-  
-  <div id="language-menu" class="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden">
+
+  <div
+    id="language-menu"
+    class="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden z-50"
+  >
     <div class="py-1">
-      <button class="language-option w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" data-lang="es">
+      <button
+        class="language-option w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        data-lang="es"
+      >
         🇪🇸 Español
       </button>
-      <button class="language-option w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" data-lang="en">
+      <button
+        class="language-option w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        data-lang="en"
+      >
         🇺🇸 English
       </button>
     </div>
@@ -26,114 +47,325 @@ import "../styles/global.css";
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const languageToggle = document.getElementById('language-toggle');
-    const languageMenu = document.getElementById('language-menu');
-    const currentLangSpan = document.getElementById('current-lang');
-    const languageOptions = document.querySelectorAll('.language-option');
-    
-    let currentLang = localStorage.getItem('language') || 'es';
-    currentLangSpan!.textContent = currentLang.toUpperCase();
-    
-    languageToggle?.addEventListener('click', (e) => {
+  type Language = "es" | "en";
+
+  type TranslationTexts = {
+    [key: string]: string;
+  };
+
+  type Translations = {
+    [K in Language]: TranslationTexts;
+  };
+
+  const translations: Translations = {
+    es: {
+      // Navigation
+      "nav-inicio": "Inicio",
+      "nav-sobre-mi": "Sobre Mí",
+      "nav-proyectos": "Proyectos",
+      "nav-habilidades": "Habilidades",
+      "nav-contacto": "Contacto",
+
+      // Hero
+      "hero-greeting": "Hola, soy",
+      "hero-description":
+        "Ingeniero de Sistemas con 3 años de experiencia en desarrollo fullstack. Creador del agente de IA ganador en la 3ra Conferencia Internacional de IA para empresas del Minuto de Dios usando Microsoft Copilot Studio.",
+      "hero-btn-projects": "Ver Proyectos",
+      "hero-btn-contact": "Contáctame",
+
+      // About
+      "about-title": "Sobre",
+      "about-title-2": "Mí",
+      "about-subtitle":
+        "Ingeniero de Sistemas apasionado por la innovación tecnológica, el desarrollo full-stack y la IA",
+      "about-description-1":
+        "Con tres años de experiencia en desarrollo fullstack, tengo un sólido dominio en el desarrollo web moderno, utilizando diversas tecnologías. He participado en múltiples proyectos para la CEMID y para pequeñas empresas que buscan emprender, automatizar procesos y optimizar el tiempo de sus equipos de trabajo.",
+      "about-achievements-title": "Algunos de mis logros:",
+      "about-achievement-1":
+        "Optimización en los procesos de matrículas para los estudiantes nuevos en los colegios del Minuto de Dios a nivel internacional",
+      "about-achievement-2":
+        "Desarrollador del agente Arquímedes, ganador de la categoría Gestión, comunicación y tecnología Presentado en la II Jornada de Inteligencia Artificial El Minuto de Dios.",
+      "about-experience-years": "Años de Experiencia",
+      "about-main-tech": "Tecnologías Principales",
+      "about-ai-agent-title": "Agente IA Ganador",
+      "about-ai-conference":
+        "II Jornada de Inteligencia Artificial El Minuto de Dios",
+
+      // Projects
+      "projects-title": "Mis",
+      "projects-subtitle":
+        "Una selección de mis trabajos más destacados en desarrollo web e inteligencia artificial",
+      "projects-featured-badge": "Destacado",
+      "projects-award-label": "AGENTE GANADOR",
+      "projects-achievement-note":
+        "Ganador de la 3ra Conferencia Internacional de IA Minuto de Dios",
+      "projects-cta-button": "Ver Más Proyectos",
+
+      // Project 1
+      "project-1-title": "Agente IA - Copilot Studio",
+      "project-1-description":
+        "Sistema de inteligencia artificial que optimiza flujos de trabajo empresariales. Ganador de la 3ra Conferencia Internacional de IA Minuto de Dios.",
+
+      // Project 2
+      "project-2-title": "Página web de admisiones",
+      "project-2-description":
+        "Página web de matrículas para estudiantes nuevos y antiguos en los colegios Minuto de Dios a nivel internacional.",
+
+      // Project 3
+      "project-3-title": "Aplicación de inventario y facturación",
+      "project-3-description":
+        "Aplicación moderna desarrollada con React, TanStack, Firebase y TailwindCSS. Incluye autenticación y base de datos en tiempo real.",
+
+      // Skills
+      "skills-title": "Mis Habilidades",
+      "skills-subtitle":
+        "Tecnologías y herramientas que domino para crear soluciones innovadoras",
+
+      // Contact
+      "contact-title": "Hablemos",
+      "contact-subtitle":
+        "¿Tienes un proyecto en mente? Me encantaría conocer más sobre tus ideas y cómo puedo ayudarte",
+      "contact-info-title": "Información de Contacto",
+      "contact-email-label": "Email",
+      "contact-location-label": "Ubicación",
+      "contact-availability-label": "Disponibilidad",
+      "contact-availability-time": "Sab - Dom, 10:00 AM - 6:00 PM",
+      "contact-social-title": "Sígueme en Redes",
+      "contact-form-name-label": "Nombre Completo",
+      "contact-form-email-label": "Email",
+      "contact-form-subject-label": "Asunto",
+      "contact-form-message-label": "Mensaje",
+      "contact-form-name-placeholder": "Tu nombre",
+      "contact-form-email-placeholder": "tu@email.com",
+      "contact-form-subject-placeholder": "Asunto del mensaje",
+      "contact-form-message-placeholder": "Cuéntame sobre tu proyecto...",
+      "contact-form-submit-btn": "Enviar Mensaje",
+      "contact-form-sending": "Enviando...",
+      "contact-form-sent": "¡Mensaje Enviado!",
+      "contact-form-error": "Error al enviar",
+
+      // Footer
+      "footer-description":
+        "Ingeniero de Sistemas especializado en desarrollo fullstack. Creando soluciones innovadoras que transforman ideas en realidad.",
+      "footer-navigation-title": "Navegación",
+      "footer-services-title": "Servicios",
+      "footer-service-1": "Desarrollo de interfaces",
+      "footer-service-2": "Aplicaciones web",
+      "footer-service-3": "Agentes de IA",
+      "footer-service-4": "Automatización",
+      "footer-made-with": "Hecho con",
+      "footer-using": "usando",
+    },
+    en: {
+      // Navigation
+      "nav-inicio": "Home",
+      "nav-sobre-mi": "About Me",
+      "nav-proyectos": "Projects",
+      "nav-habilidades": "Skills",
+      "nav-contacto": "Contact",
+
+      // Hero
+      "hero-greeting": "Hi, I am",
+      "hero-description":
+        "Systems Engineer with 3 years of experience in fullstack development. Creator of the winning AI agent at the 3rd International AI Conference for Minuto de Dios companies using Microsoft Copilot Studio.",
+      "hero-btn-projects": "View Projects",
+      "hero-btn-contact": "Contact Me",
+
+      // About
+      "about-title": "About",
+      "about-title-2": "Me",
+      "about-subtitle":
+        "Systems Engineer passionate about technological innovation, full-stack development and AI",
+      "about-description-1":
+        "With three years of experience in fullstack development, I have a solid command of modern web development, using various technologies. I have participated in multiple projects for CEMID and for small companies looking to undertake, automate processes and optimize their work teams' time.",
+      "about-achievements-title": "Some of my achievements:",
+      "about-achievement-1":
+        "Optimization in the enrollment processes for new students at Minuto de Dios schools internationally",
+      "about-achievement-2":
+        "Developer of the Archimedes agent, winner of the Management, communication and technology category presented at the II Artificial Intelligence Conference El Minuto de Dios.",
+      "about-experience-years": "Years of Experience",
+      "about-main-tech": "Main Technologies",
+      "about-ai-agent-title": "Winner AI Agent",
+      "about-ai-conference":
+        "II Artificial Intelligence Conference El Minuto de Dios",
+
+      // Projects
+      "projects-title": "My",
+      "projects-subtitle":
+        "A selection of my most outstanding work in web development and artificial intelligence",
+      "projects-featured-badge": "Featured",
+      "projects-award-label": "WINNER AGENT",
+      "projects-achievement-note":
+        "Winner of the 3rd International AI Conference Minuto de Dios",
+      "projects-cta-button": "View More Projects",
+
+      // Project 1
+      "project-1-title": "AI Agent - Copilot Studio",
+      "project-1-description":
+        "Artificial intelligence system that optimizes business workflows. Winner of the 3rd International AI Conference Minuto de Dios.",
+
+      // Project 2
+      "project-2-title": "Admissions website",
+      "project-2-description":
+        "Enrollment website for new and returning students at Minuto de Dios schools internationally.",
+
+      // Project 3
+      "project-3-title": "Inventory and billing application",
+      "project-3-description":
+        "Modern application developed with React, TanStack, Firebase and TailwindCSS. Includes authentication and real-time database.",
+
+      // Skills
+      "skills-title": "My Skills",
+      "skills-subtitle":
+        "Technologies and tools I master to create innovative solutions",
+
+      // Contact
+      "contact-title": "Let's Talk",
+      "contact-subtitle":
+        "Do you have a project in mind? I would love to learn more about your ideas and how I can help you",
+      "contact-info-title": "Contact Information",
+      "contact-email-label": "Email",
+      "contact-location-label": "Location",
+      "contact-availability-label": "Availability",
+      "contact-availability-time": "Sat - Sun, 10:00 AM - 6:00 PM",
+      "contact-social-title": "Follow me on Social Media",
+      "contact-form-name-label": "Full Name",
+      "contact-form-email-label": "Email",
+      "contact-form-subject-label": "Subject",
+      "contact-form-message-label": "Message",
+      "contact-form-name-placeholder": "Your name",
+      "contact-form-email-placeholder": "your@email.com",
+      "contact-form-subject-placeholder": "Message subject",
+      "contact-form-message-placeholder": "Tell me about your project...",
+      "contact-form-submit-btn": "Send Message",
+      "contact-form-sending": "Sending...",
+      "contact-form-sent": "Message Sent!",
+      "contact-form-error": "Error sending",
+
+      // Footer
+      "footer-description":
+        "Systems Engineer specialized in fullstack development. Creating innovative solutions that transform ideas into reality.",
+      "footer-navigation-title": "Navigation",
+      "footer-services-title": "Services",
+      "footer-service-1": "Interface Development",
+      "footer-service-2": "Web Applications",
+      "footer-service-3": "AI Agents",
+      "footer-service-4": "Automation",
+      "footer-made-with": "Made with",
+      "footer-using": "using",
+    },
+  };
+
+  // Declaración global para window.typewriterTexts
+  declare global {
+    interface Window {
+      typewriterTexts?: string[];
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const languageToggle = document.getElementById("language-toggle");
+    const languageMenu = document.getElementById("language-menu");
+    const currentLangSpan = document.getElementById("current-lang");
+    const languageOptions = document.querySelectorAll(".language-option");
+
+    let currentLang: Language =
+      (localStorage.getItem("language") as Language) || "es";
+
+    function updatePageContent(lang: Language): void {
+      const currentTranslations = translations[lang];
+
+      if (currentLangSpan) {
+        currentLangSpan.textContent = lang.toUpperCase();
+      }
+
+      // Actualizar textos con data-i18n
+      Object.entries(currentTranslations).forEach(([key, value]) => {
+        const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
+        elements.forEach((element) => {
+          element.textContent = value;
+        });
+      });
+
+      // Actualizar placeholders
+      Object.entries(currentTranslations).forEach(([key, value]) => {
+        const elements = document.querySelectorAll(
+          `[data-i18n-placeholder="${key}"]`
+        );
+        elements.forEach((element) => {
+          const input = element as HTMLInputElement | HTMLTextAreaElement;
+          input.placeholder = value;
+        });
+      });
+
+      // Actualizar textos del typewriter
+      updateTypewriterTexts(lang);
+
+      // Disparar evento personalizado
+      window.dispatchEvent(
+        new CustomEvent("languageChanged", {
+          detail: {
+            translations: currentTranslations,
+            language: lang,
+          },
+        })
+      );
+    }
+
+    function updateTypewriterTexts(lang: Language): void {
+      // Usar un nombre diferente para evitar conflictos
+      const localTypewriterTexts: Record<Language, string[]> = {
+        es: [
+          "Desarrollador Full Stack Expert Certified",
+          "Ingeniero de Sistemas",
+          "UI/UX Expert",
+        ],
+        en: [
+          "Full Stack Developer Expert Certified",
+          "Systems Engineer",
+          "UI/UX Expert",
+        ],
+      };
+
+      if (typeof window !== "undefined") {
+        window.typewriterTexts = localTypewriterTexts[lang];
+      }
+    }
+
+    // Inicializar con idioma guardado
+    updatePageContent(currentLang);
+
+    // Toggle menu
+    languageToggle?.addEventListener("click", (e: Event) => {
       e.stopPropagation();
-      languageMenu?.classList.toggle('hidden');
+      languageMenu?.classList.toggle("hidden");
     });
-    
-    document.addEventListener('click', () => {
-      languageMenu?.classList.add('hidden');
+
+    // Cerrar menu al hacer clic fuera
+    document.addEventListener("click", (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (
+        !languageToggle?.contains(target) &&
+        !languageMenu?.contains(target)
+      ) {
+        languageMenu?.classList.add("hidden");
+      }
     });
-    
-    languageOptions.forEach(option => {
-      option.addEventListener('click', (e) => {
-        const selectedLang = (e.target as HTMLElement).dataset.lang;
+
+    // Manejar selección de idioma
+    languageOptions.forEach((option) => {
+      option.addEventListener("click", (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (!target) return;
+
+        const selectedLang = target.dataset.lang as Language;
         if (selectedLang && selectedLang !== currentLang) {
           currentLang = selectedLang;
-          currentLangSpan!.textContent = selectedLang.toUpperCase();
-          localStorage.setItem('language', selectedLang);
-          
+          localStorage.setItem("language", selectedLang);
           updatePageContent(selectedLang);
-          
-          languageMenu?.classList.add('hidden');
+          languageMenu?.classList.add("hidden");
         }
       });
     });
-    
-    updatePageContent(currentLang);
   });
-  
-  function updatePageContent(lang: string) {
-    const translations = {
-      es: {
-        // Navigation
-        'nav-inicio': 'Inicio',
-        'nav-sobre-mi': 'Sobre Mí',
-        'nav-proyectos': 'Proyectos',
-        'nav-habilidades': 'Habilidades',
-        'nav-contacto': 'Contacto',
-        
-        // Hero
-        'hero-greeting': 'Hola, soy',
-        'hero-description': 'Ingeniero de Sistemas con 3 años de experiencia en desarrollo fullstack. Creador del agente de IA ganador en la 3ra Conferencia Internacional de IA para empresas del Minuto de Dios usando Microsoft Copilot Studio.',
-        'hero-btn-projects': 'Ver Proyectos',
-        'hero-btn-contact': 'Contáctame',
-        
-        // About
-        'about-title': 'Sobre Mí',
-        'about-subtitle': 'Ingeniero de Sistemas apasionado por la innovación tecnológica y la inteligencia artificial',
-        
-        // Projects
-        'projects-title': 'Mis Proyectos',
-        'projects-subtitle': 'Una selección de mis trabajos más destacados en desarrollo web e inteligencia artificial',
-        
-        // Skills
-        'skills-title': 'Mis Habilidades',
-        'skills-subtitle': 'Tecnologías y herramientas que domino para crear soluciones innovadoras',
-        
-        // Contact
-        'contact-title': 'Hablemos Juntos',
-        'contact-subtitle': '¿Tienes un proyecto en mente? Me encantaría conocer más sobre tus ideas y cómo puedo ayudarte'
-      },
-      en: {
-        // Navigation  
-        'nav-inicio': 'Home',
-        'nav-sobre-mi': 'About Me',
-        'nav-proyectos': 'Projects',
-        'nav-habilidades': 'Skills',
-        'nav-contacto': 'Contact',
-        
-        // Hero
-        'hero-greeting': 'Hi, I am',
-        'hero-description': 'Systems Engineer with 3 years of experience in fullstack development. Creator of the winning AI agent at the 3rd International AI Conference for Minuto de Dios companies using Microsoft Copilot Studio.',
-        'hero-btn-projects': 'View Projects',
-        'hero-btn-contact': 'Contact Me',
-        
-        // About
-        'about-title': 'About Me',
-        'about-subtitle': 'Systems Engineer passionate about technological innovation and artificial intelligence',
-        
-        // Projects
-        'projects-title': 'My Projects',
-        'projects-subtitle': 'A selection of my most outstanding work in web development and artificial intelligence',
-        
-        // Skills
-        'skills-title': 'My Skills',
-        'skills-subtitle': 'Technologies and tools I master to create innovative solutions',
-        
-        // Contact
-        'contact-title': "Let's Talk Together",
-        'contact-subtitle': 'Do you have a project in mind? I would love to learn more about your ideas and how I can help you'
-      }
-    };
-    
-    // Update text content
-    const currentTranslations = translations[lang as keyof typeof translations];
-    
-    Object.entries(currentTranslations).forEach(([key, value]) => {
-      const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
-      elements.forEach(element => {
-        element.textContent = value;
-      });
-    });
-  }
 </script>

@@ -2,9 +2,16 @@
 
 @theme {
   --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
   --color-primary-500: #3b82f6;
   --color-primary-600: #2563eb;
   --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
   --color-secondary-500: #8b5cf6;
   --color-secondary-600: #7c3aed;
   --color-accent-500: #10b981;
@@ -49,8 +56,51 @@
     animation: floating 6s ease-in-out infinite;
   }
 
+  /* PROYECTOS - Estilos consolidados */
+  .project-card {
+    @apply bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2;
+  }
+  
+  .featured-project {
+    @apply ring-2 ring-yellow-400 lg:col-span-2 xl:col-span-1;
+    box-shadow: 0 20px 40px -8px rgba(251, 191, 36, 0.3);
+  }
+  
+  .featured-badge {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center shadow-md;
+  }
+  
+  .award-badge {
+    @apply bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full w-10 h-10 flex items-center justify-center shadow-md;
+  }
+  
+  .award-label {
+    @apply inline-block bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide;
+  }
+  
+  /* TECH BADGES - Versión consolidada */
   .tech-badge {
-    @apply p-2 rounded-lg;
+    @apply px-3 py-1   rounded-full text-sm font-medium;
+  }
+  
+  .featured-tech {
+    @apply bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900 dark:to-orange-900 text-yellow-800 dark:text-yellow-200 border border-yellow-300 dark:border-yellow-700;
+  }
+  
+  .achievement-highlight {
+    @apply bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900 dark:to-orange-900 border-l-4 border-yellow-400 p-3 rounded-md;
+  }
+  
+  .cta-button {
+    @apply inline-flex items-center px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg shadow-lg hover:from-primary-600 hover:to-primary-700 transform hover:scale-105 transition-all duration-200;
+  }
+  
+  /* UTILIDADES GENERALES */
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .skill-bar {
@@ -62,20 +112,20 @@
     width: var(--width);
   }
 
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* ANIMACIONES */
   @keyframes floating {
-    0%,
-    100% {
+    0%, 100% {
       transform: translateY(0px);
     }
     50% {
       transform: translateY(-20px);
     }
-  }
-
-  .fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(30px);
   }
 
   @keyframes fadeInUp {

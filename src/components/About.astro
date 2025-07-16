@@ -8,9 +8,9 @@ import "../styles/global.css";
       <h2
         class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
       >
-        Sobre <span class="gradient-text">Mí</span>
+        <span data-i18n="about-title">Sobre</span> <span data-i18n="about-title-2" class="gradient-text">Mí</span>
       </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-i18n="about-subtitle">
         Ingeniero de Sistemas apasionado por la innovación tecnológica, el
         desarrollo full-stack y la IA
       </p>
@@ -20,28 +20,31 @@ import "../styles/global.css";
       <!-- Content -->
       <div class="space-y-6">
         <div class="prose prose-lg dark:prose-invert">
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Con 3 años de experiencia en desarrollo fullstack, me especializo en
-            empresariales. Mi expertise abarca el desarrollo web moderno,
-            pasando por diferentes tecnologías.
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed" data-i18n="about-description-1">
+            Con tres años de experiencia en desarrollo fullstack, tengo un
+            sólido dominio en el desarrollo web moderno, utilizando diversas
+            tecnologías. He participado en múltiples proyectos para la CEMID y
+            para pequeñas empresas que buscan emprender, automatizar procesos y
+            optimizar el tiempo de sus equipos de trabajo.
           </p>
 
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-8">
-            <b class="text-gray-900">Algunos de mis logros</b>:<br />
-            <ul class="list-disc ms-8 mt-4 text-gray-600 space-y-4">
-              <li>
-                Optimización en los procesos de matrículas para los estudiantes.
+          <div class="mt-8">
+            <p class="text-gray-900 dark:text-white font-bold mb-4" data-i18n="about-achievements-title">
+              Algunos de mis logros:
+            </p>
+            <ul class="list-disc ms-8 mt-4 text-gray-600 dark:text-gray-300 space-y-4">
+              <li data-i18n="about-achievement-1">
+                Optimización en los procesos de matrículas para los estudiantes
                 nuevos en los colegios del Minuto de Dios a nivel internacional
               </li>
-              <li>
+              <li data-i18n="about-achievement-2">
                 Desarrollador del agente Arquímedes, ganador de la categoría
-                <b>
-                  Gestión, comunicación y tecnología
-                </b>
-                Presentado en la II Jornada de Inteligencia Artificial El Minuto de Dios.
+                <b> Gestión, comunicación y tecnología </b>
+                Presentado en la II Jornada de Inteligencia Artificial El Minuto
+                de Dios.
               </li>
             </ul>
-          </p>
+          </div>
         </div>
 
         <!-- Stats -->
@@ -52,7 +55,7 @@ import "../styles/global.css";
             >
               3+
             </div>
-            <div class="text-gray-600 dark:text-gray-300">
+            <div class="text-gray-600 dark:text-gray-300" data-i18n="about-experience-years">
               Años de Experiencia
             </div>
           </div>
@@ -60,7 +63,7 @@ import "../styles/global.css";
 
         <!-- Technologies -->
         <div class="mt-8">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" data-i18n="about-main-tech">
             Tecnologías Principales
           </h3>
           <div class="flex flex-wrap gap-3">
@@ -72,7 +75,10 @@ import "../styles/global.css";
             <span class="tech-badge bg-yellow-600 text-white">Javascript</span>
             <span class="tech-badge bg-sky-600 text-white">MySQL</span>
             <span class="tech-badge bg-sky-950 text-white">MongoDB</span>
-            <span class="tech-badge bg-gradient-to-r from-orange-600 via-pink-500 to-rose-700 text-white">Microsoft Copilot Studio</span>
+            <span
+              class="tech-badge bg-gradient-to-r from-orange-600 via-pink-500 to-rose-700 text-white"
+              >Microsoft Copilot Studio</span
+            >
             <span class="tech-badge bg-sky-600 text-white">TailwindCSS</span>
           </div>
         </div>
@@ -91,10 +97,10 @@ import "../styles/global.css";
               >
                 <p class="text-4xl">🏆</p>
               </div>
-              <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2" data-i18n="about-ai-agent-title">
                 Agente IA Ganador
               </h4>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4" data-i18n="about-ai-conference">
                 II Jornada de Inteligencia Artificial El Minuto de Dios
               </p>
               <div

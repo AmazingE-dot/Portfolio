@@ -20,7 +20,6 @@ const { title, description = "Portafolio profesional de ingeniero de sistemas es
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <script>
-      // Dark mode initialization
       if (localStorage.getItem('theme') === 'dark' || 
           (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
