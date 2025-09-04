@@ -112,11 +112,69 @@
     width: var(--width);
   }
 
+  
   .fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
   }
+
+  /* === ANIMACIONES PERSONALIZADAS - Solo las que Tailwind no incluye === */
+
+/* Animación de flotación para iconos */
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+@keyframes tech-float-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(1deg); }
+  66% { transform: translateY(-4px) rotate(-1deg); }
+}
+
+@keyframes tech-float-2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes tech-float-3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Aplicar animaciones */
+.icon-float {
+  animation: icon-float 3s ease-in-out infinite;
+}
+
+.tech-float-1 {
+  animation: tech-float-1 3s ease-in-out infinite;
+}
+
+.tech-float-2 {
+  animation: tech-float-2 4s ease-in-out infinite;
+}
+
+.tech-float-3 {
+  animation: tech-float-3 5s ease-in-out infinite;
+}
+
+/* Transiciones suaves para elementos animados */
+.skill-category-animate {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.skill-item-animate {
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.tech-animate {
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+
+  
 
   /* ANIMACIONES */
   @keyframes floating {

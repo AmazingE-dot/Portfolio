@@ -7,7 +7,7 @@ const projects = [
     titleKey: "project-1-title",
     descriptionKey: "project-1-description",
     defaultTitle: "Agente IA - Copilot Studio",
-    defaultDescription: "Sistema de inteligencia artificial que optimiza flujos de trabajo empresariales. Ganador de la 3ra Conferencia Internacional de IA Minuto de Dios.",
+    defaultDescription: "Agente de inteligencia artificial que optimiza flujos de trabajo empresariales. Ganador de la II Conferencia Internacional de IA Minuto de Dios.",
     technologies: ["Microsoft Copilot Studio", "Microsoft Graph", "PHP"],
     image: "/Projects/AvartarArquimedes.webp",
     featured: true,
@@ -45,11 +45,11 @@ const projects = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-        <span data-i18n="projects-title">Mis</span> <span class="gradient-text">Proyectos</span>
+        <span data-i18n="projects-title"></span> <span class="gradient-text" data-i18n="projects-title2"></span>
       </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-i18n="projects-subtitle">
+      <!-- <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-i18n="projects-subtitle">
         Una selección de mis trabajos más destacados en desarrollo web e inteligencia artificial
-      </p>
+      </p> -->
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -109,9 +109,7 @@ const projects = [
 
             {project.featured && (
               <div class="achievement-highlight">
-                <p class="text-sm text-gray-600 dark:text-gray-400 font-medium" data-i18n="projects-achievement-note">
-                  Ganador de la 3ra Conferencia Internacional de IA Minuto de Dios
-                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 font-medium" data-i18n="projects-achievement-note"></p>
               </div>
             )}
           </div>
@@ -121,12 +119,12 @@ const projects = [
 
     <!-- CTA -->
     <div class="text-center mt-12">
-      <a href="#contacto" class="cta-button">
+      <!-- <a href="#contacto" class="cta-button">
         <span data-i18n="projects-cta-button">Ver Más Proyectos</span>
         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
-      </a>
+      </a> -->
     </div>
   </div>
 </section>

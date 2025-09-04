@@ -8,7 +8,7 @@ import "../styles/global.css";
 >
   <canvas id="particles-canvas" class="absolute inset-0 w-full h-full"></canvas>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-12">
     <div class="fade-in-up">
       <div class="mb-8">
         <div
@@ -20,7 +20,7 @@ import "../styles/global.css";
 
       <!-- Main heading -->
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-        <span class="block text-gray-900 dark:text-white">Hola, soy</span>
+        <span data-i18n="hero-greeting" class="block text-gray-900 dark:text-white">Hola, soy</span>
         <span class="block gradient-text">Eduardo León</span>
       </h1>
 
@@ -33,7 +33,7 @@ import "../styles/global.css";
 
       <!-- Description -->
       <p
-        class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed"
+        class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed" data-i18n="hero-description"
       >
         Ingeniero de Sistemas con 3 años de experiencia en desarrollo full
         stack.<br />
@@ -43,11 +43,10 @@ import "../styles/global.css";
         Minuto de Dios.
       </p>
 
-      <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="#proyectos"
-          class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg shadow-lg hover:from-primary-600 hover:to-primary-700 transform hover:scale-105 transition-all duration-200;"
+          href="#proyectos" data-i18n="hero-btn-projects"
+          class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg shadow-lg hover:from-primary-600 hover:to-primary-700 transform hover:scale-105 transition-all duration-200"
         >
           Ver Proyectos
           <svg
@@ -63,33 +62,13 @@ import "../styles/global.css";
               d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
           </svg>
         </a>
-        <a
-          href="#contacto"
-          class="inline-flex items-center px-8 py-3 bg-transparent border-2 border-primary-500 text-primary-600 dark:text-primary-400 font-semibold rounded-lg hover:bg-primary-500 hover:text-white transform hover:scale-105 transition-all duration-200;"
-        >
-          Contáctame
-          <svg
-            class="w-5 h-5 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            ></path>
-          </svg>
-        </a>
       </div>
 
-      <!-- Social Links -->
       <div class="flex justify-center space-x-6 mt-10">
         <a
           target="_blank"
           href="https://www.linkedin.com/in/carlos-eduardo-le%C3%B3n-bedoya-583483281/"
-          class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transform hover:scale-110 transition-all duration-200;"
+          class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transform hover:scale-110 transition-all duration-200"
         >
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -100,11 +79,11 @@ import "../styles/global.css";
         <a
           target="_blank"
           href="https://github.com/AmazingE-dot"
-          class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transform hover:scale-110 transition-all duration-200;"
+          class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transform hover:scale-110 transition-all duration-200"
         >
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
             ></path>
           </svg>
         </a>
@@ -133,31 +112,47 @@ import "../styles/global.css";
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const typewriterElement = document.getElementById("typewriter-text")!;
+    const typewriterElement = document.getElementById("typewriter-text");
 
     if (!typewriterElement) {
       console.warn("Elemento typewriter no encontrado");
       return;
     }
 
-    const texts = [
+    // Textos por defecto (fallback)
+    const defaultTexts = [
       "Desarrollador Full Stack Expert Certified",
       "UI/UX Expert",
       "Ingeniero de Sistemas",
     ];
 
+    let currentTexts = defaultTexts;
     let textIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let typewriterTimeout: string | number | NodeJS.Timeout | undefined;
 
+    // Función para obtener los textos actuales
+    function getCurrentTexts() {
+      return window.typewriterTexts && window.typewriterTexts.length > 0 
+        ? window.typewriterTexts 
+        : defaultTexts;
+    }
+
+    // Función principal del typewriter
     function typeWriter() {
-      const currentText = texts[textIndex];
+      currentTexts = getCurrentTexts();
+      const currentText = currentTexts[textIndex];
 
       if (isDeleting) {
-        typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+        if (typewriterElement) {
+          typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+        }
         charIndex--;
       } else {
-        typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+        if (typewriterElement) {
+          typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+        }
         charIndex++;
       }
 
@@ -168,22 +163,54 @@ import "../styles/global.css";
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
+        textIndex = (textIndex + 1) % currentTexts.length;
         typeSpeed = 200;
       }
 
-      setTimeout(typeWriter, typeSpeed);
+      typewriterTimeout = setTimeout(typeWriter, typeSpeed);
     }
 
-    setTimeout(typeWriter, 1000);
+    // Función para reiniciar el typewriter
+    function restartTypewriter() {
+      // Limpiar timeout existente
+      if (typewriterTimeout) {
+        clearTimeout(typewriterTimeout);
+      }
 
-    // Particles animation
-    const canvas = document.getElementById(
-      "particles-canvas"
-    ) as HTMLCanvasElement;
+      // Resetear variables
+      currentTexts = getCurrentTexts();
+      textIndex = 0;
+      charIndex = 0;
+      isDeleting = false;
+      if (typewriterElement) {
+        typewriterElement.textContent = "";
+      }
+
+      // Iniciar nuevamente con un pequeño delay
+      setTimeout(() => {
+        typeWriter();
+      }, 300);
+    }
+
+    // Función global para actualizar typewriter (accesible desde LanguageToggle)
+    window.updateTypewriter = restartTypewriter;
+
+    // Escuchar cambios de idioma
+    window.addEventListener('languageChanged', (event) => {
+      restartTypewriter();
+    });
+
+    // Inicializar el typewriter
+    setTimeout(() => {
+      currentTexts = getCurrentTexts();
+      typeWriter();
+    }, 1000);
+
+    // === PARTICLES ANIMATION (sin cambios) ===
+    const canvas = document.getElementById("particles-canvas") as HTMLCanvasElement;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let particles: Array<{
@@ -215,6 +242,7 @@ import "../styles/global.css";
     }
 
     function animateParticles() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {

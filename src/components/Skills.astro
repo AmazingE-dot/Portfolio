@@ -2,118 +2,128 @@
 import "../styles/global.css";
 
 const skillCategories = [
-  
   {
     title: "Backend",
     icon: "⚙️",
     skills: [
-      { name: "PHP", level: 90, color: "from-purple-500 to-pink-500" },
-      { name: "NodeJS", level: 85, color: "from-orange-500 to-red-500" },
-      { name: "Firebase", level: 75, color: "from-red-500 to-pink-500" },
-      { name: "MySQL", level: 85, color: "from-blue-600 to-indigo-600" },
-      { name: "MongoDB", level: 80, color: "from-blue-600 to-indigo-600" },
+      { name: "PHP", level: 90 },
+      { name: "NodeJS", level: 85 },
+      { name: "Firebase", level: 75 },
+      { name: "MySQL", level: 85 },
+      { name: "MongoDB", level: 80 },
     ],
   },
   {
     title: "Frontend",
     icon: "🎨",
     skills: [
-      { name: "React", level: 85, color: "from-blue-500 to-cyan-500" },
-      { name: "Angular", level: 90, color: "from-blue-600 to-purple-600" },
-      { name: "JavaScript", level: 95, color: "from-yellow-500 to-orange-500" },
-      { name: "Astro", level: 95, color: "from-teal-500 to-blue-500" },
+      { name: "React", level: 85 },
+      { name: "Angular", level: 90 },
+      { name: "JavaScript", level: 95 },
+      { name: "Astro", level: 95 },
     ],
   },
   {
     title: "Otros",
     icon: "🤖",
     skills: [
-      {
-        name: "Copilot Studio",
-        level: 75,
-        color: "from-green-500 to-teal-500",
-      },
-      {
-        name: "Análisis de Datos",
-        level: 80,
-        color: "from-pink-500 to-rose-500",
-      },
+      { name: "Copilot Studio", level: 75 },
+      { name: "Análisis de Datos", level: 80 },
     ],
   },
 ];
+
+// Función para obtener el nivel descriptivo
+function getSkillLevel(level: number) {
+  if (level >= 90) return { text: "Experto", class: "expert" };
+  if (level >= 75) return { text: "Avanzado", class: "advanced" };
+  if (level >= 60) return { text: "Intermedio", class: "intermediate" };
+  return { text: "Básico", class: "beginner" };
+}
 ---
 
 <section id="habilidades" class="py-20 bg-white dark:bg-gray-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2
-        class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-      >
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4" data-i18n="skills-title">
         Mis <span class="gradient-text">Habilidades</span>
       </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Tecnologías y herramientas que domino para crear soluciones innovadoras.
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-i18n="skills-subtitle">
+        Tecnologías y herramientas que domino para crear soluciones innovadoras
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {
-        skillCategories.map((category, categoryIndex) => (
-          <div class="skill-category">
-            <div class="flex items-center mb-6">
-              <div class="text-3xl mr-3">{category.icon}</div>
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-                {category.title}
-              </h3>
+      {skillCategories.map((category, categoryIndex) => (
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-8 skill-category-animate border-2 border-transparent hover:border-indigo-200 dark:hover:border-indigo-700">
+          
+          {/* Header de Categoría */}
+          <div class="flex items-center justify-center mb-8 pb-6 border-b-2 border-gray-200 dark:border-gray-600">
+            <div class="text-4xl mr-4 p-4 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full shadow-lg icon-float">
+              {category.icon}
             </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              {category.title}
+            </h3>
+          </div>
 
-            <div class="space-y-4">
-              {category.skills.map((skill, skillIndex) => (
-                <div class="skill-item">
-                  <div class="flex justify-between items-center mb-2">
-                    <span class="text-gray-700 dark:text-gray-300 font-medium">
+          {/* Lista de Habilidades */}
+          <div class="space-y-4">
+            {category.skills.map((skill, skillIndex) => {
+              const levelInfo = getSkillLevel(skill.level);
+              
+              return (
+                <div 
+                  class="p-4 rounded-xl bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 opacity-0 -translate-x-4 skill-item-animate transform hover:translate-x-1"
+                  style={`--delay: ${(categoryIndex * category.skills.length + skillIndex) * 100}ms`}
+                >
+                  <div class="flex justify-between items-center flex-col sm:flex-row gap-2">
+                    <span class="text-lg font-semibold text-gray-900 dark:text-white">
                       {skill.name}
                     </span>
-                    <span class="text-gray-500 dark:text-gray-400 text-sm">
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div
-                      class={`skill-bar bg-gradient-to-r ${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                      data-width={skill.level}
-                      style={`--delay: ${(categoryIndex * category.skills.length + skillIndex) * 200}ms`}
-                    />
+                    {/* <span class={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-md transition-all duration-300 hover:scale-105 ${
+                      levelInfo.class === 'expert' ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-emerald-500/40' :
+                      levelInfo.class === 'advanced' ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-blue-500/40' :
+                      levelInfo.class === 'intermediate' ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-yellow-500/40' :
+                      'bg-gradient-to-r from-gray-500 to-gray-600 text-white shadow-gray-500/40'
+                    }`}>
+                      {levelInfo.text}
+                    </span> */}
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        ))
-      }
+        </div>
+      ))}
     </div>
 
-    <!-- Additional Skills Cloud -->
-    <div class="mt-16 text-center">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-        Otras Tecnologías
-      </h3>
+    <!-- Nube de Tecnologías Adicionales -->
+    <div class="mt-20 text-center">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8" data-i18n="skills-subtitle2"></h3>
       <div class="flex flex-wrap justify-center gap-4">
-        {
-          [
-            "Git",
-            "GitHub",
-            "Astro",
-            "VS Code",
-            "Figma",
-            "API REST",
-            "Bootstrap",
-            "Tailwind",
-            "Webpack",
-            "NPM",
-            "Composer",
-          ].map((tech) => <span class="tech-cloud-item">{tech}</span>)
-        }
+        {[
+          { name: "GitHub", level: "advanced" },
+          { name: "Figma", level: "advanced" },
+          { name: "APIs REST", level: "advanced" },
+          { name: "Bootstrap", level: "advanced" },
+          { name: "TailwindCSS", level: "advanced" },
+          { name: "Webpack", level: "advanced" },
+          { name: "NPM", level: "advanced" },
+          { name: "Python", level: "advanced" },
+        ].map((tech, index) => (
+          <span 
+            class={`px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-110 cursor-default opacity-0 translate-y-4 tech-animate ${
+              tech.level === 'expert' ? 'text-base bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg tech-float-1' :
+              tech.level === 'advanced' ? 'text-sm bg-gradient-to-r from-blue-900 to-cyan-700 text-white shadow-md tech-float-2' :
+              tech.level === 'intermediate' ? 'text-sm bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-md tech-float-3' :
+              'text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 shadow-sm'
+            }`}
+            style={`--delay: ${index * 50}ms`}
+          >
+            {tech.name}
+          </span>
+        ))}
       </div>
     </div>
   </div>
@@ -122,21 +132,40 @@ const skillCategories = [
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const observerOptions = {
-      threshold: 0.3,
-      rootMargin: "0px 0px -100px 0px",
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const skillBars = entry.target.querySelectorAll(".skill-bar");
-          skillBars.forEach((bar) => {
-            const el = bar as HTMLElement;
-            const width = el.dataset.width;
-            if (width) {
-              el.style.setProperty("--width", width + "%");
-              el.classList.add("animate");
-            }
+          // Animar categorías
+          const categories = entry.target.querySelectorAll(".skill-category-animate");
+          categories.forEach((category, index) => {
+            setTimeout(() => {
+              category.classList.remove("opacity-0", "translate-y-8");
+              category.classList.add("opacity-100", "translate-y-0");
+            }, index * 200);
+          });
+
+          // Animar items de habilidades
+          const skillItems = entry.target.querySelectorAll(".skill-item-animate");
+          skillItems.forEach((item) => {
+            const delay = parseInt((item as HTMLElement).style.getPropertyValue('--delay')) || 0;
+            setTimeout(() => {
+              item.classList.remove("opacity-0", "-translate-x-4");
+              item.classList.add("opacity-100", "translate-x-0");
+            }, delay);
+          });
+
+          // Animar tags de tecnologías
+          const techTags = entry.target.querySelectorAll(".tech-animate");
+          techTags.forEach((tag) => {
+            const delay = parseInt((tag as HTMLElement).style.getPropertyValue('--delay')) || 0;
+            setTimeout(() => {
+              tag.classList.remove("opacity-0", "translate-y-4");
+              tag.classList.add("opacity-100", "translate-y-0");
+            }, delay);
           });
         }
       });
