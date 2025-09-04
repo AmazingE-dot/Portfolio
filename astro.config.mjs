@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    site: 'https://github.com/AmazingE-dot',
-    base: '/Portfolio',
+  site: 'https://amazingE-dot.github.io/Portfolio/',
+  base: '/Portfolio/',
   }
 });
