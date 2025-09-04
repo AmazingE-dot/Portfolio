@@ -119,7 +119,7 @@
     transform: translateY(30px);
   }
 
-  /* === ANIMACIONES PERSONALIZADAS - Solo las que Tailwind no incluye === */
+  
 
 /* Animación de flotación para iconos */
 @keyframes icon-float {
