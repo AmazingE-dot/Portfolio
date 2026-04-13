@@ -8,16 +8,24 @@ import "../styles/global.css";
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <a href="#" class="text-2xl font-bold gradient-text"> &lt; EduDev /&gt; </a>
+        <a href="#" class="text-2xl font-bold gradient-text">
+          &lt; EduDev /&gt;
+        </a>
       </div>
 
       <!-- Desktop Menu -->
       <div class="hidden lg:block">
         <div class="ml-10 flex items-baseline space-x-8">
           <a href="#inicio" class="nav-link" data-i18n="nav-inicio">Inicio</a>
-          <a href="#sobre-mi" class="nav-link" data-i18n="nav-sobre-mi">Sobre Mí</a>
-          <a href="#proyectos" class="nav-link" data-i18n="nav-proyectos">Proyectos</a>
-          <a href="#habilidades" class="nav-link" data-i18n="nav-habilidades">Habilidades</a>
+          <a href="#sobre-mi" class="nav-link" data-i18n="nav-sobre-mi"
+            >Sobre Mí</a
+          >
+          <a href="#proyectos" class="nav-link" data-i18n="nav-proyectos"
+            >Proyectos</a
+          >
+          <a href="#habilidades" class="nav-link" data-i18n="nav-habilidades"
+            >Habilidades</a
+          >
           <!-- <a href="#contacto" class="nav-link" data-i18n="nav-contacto">Contacto</a> -->
         </div>
       </div>
@@ -75,10 +83,26 @@ import "../styles/global.css";
       <div
         class="px-2 pt-2 pb-3 space-y-1 flex flex-col gap-y-2 sm:px-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-lg mt-2"
       >
-        <a href="#inicio" class="mobile-nav-link bg-white/10 p-2 rounded-lg" data-i18n="nav-inicio">Inicio</a>
-        <a href="#sobre-mi" class="mobile-nav-link bg-white/10 p-2 rounded-lg" data-i18n="nav-sobre-mi">Sobre Mí</a>
-        <a href="#proyectos" class="mobile-nav-link bg-white/10 p-2 rounded-lg" data-i18n="nav-proyectos">Proyectos</a>
-        <a href="#habilidades" class="mobile-nav-link bg-white/10 p-2 rounded-lg" data-i18n="nav-habilidades">Habilidades</a>
+        <a
+          href="#inicio"
+          class="mobile-nav-link bg-white/10 p-2 rounded-lg"
+          data-i18n="nav-inicio">Inicio</a
+        >
+        <a
+          href="#sobre-mi"
+          class="mobile-nav-link bg-white/10 p-2 rounded-lg"
+          data-i18n="nav-sobre-mi">Sobre Mí</a
+        >
+        <a
+          href="#proyectos"
+          class="mobile-nav-link bg-white/10 p-2 rounded-lg"
+          data-i18n="nav-proyectos">Proyectos</a
+        >
+        <a
+          href="#habilidades"
+          class="mobile-nav-link bg-white/10 p-2 rounded-lg"
+          data-i18n="nav-habilidades">Habilidades</a
+        >
         <!-- <a href="#contacto" class="mobile-nav-link" data-i18n="nav-contacto">Contacto</a> -->
       </div>
     </div>
@@ -113,15 +137,23 @@ import "../styles/global.css";
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (this: HTMLAnchorElement, e) {
         e.preventDefault();
-        const target = document.querySelector(
-          this.getAttribute("href") as string
-        );
+        const href = this.getAttribute("href") as string;
+        const target = document.querySelector(href);
+
         if (target) {
           target.scrollIntoView({
             behavior: "smooth",
             block: "start",
           });
+
+          // ACTUALIZACIÓN CLAVE: Cambiamos el hash manualmente
+          // sin recargar la página para que GA4 lo detecte
+          history.pushState(null, "", href);
+
+          // Disparamos manualmente el evento que GA4 está escuchando
+          window.dispatchEvent(new HashChangeEvent("hashchange"));
         }
+
         // Close mobile menu if open
         mobileMenu?.classList.add("hidden");
       });

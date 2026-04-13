@@ -33,28 +33,25 @@ const {
       gtag("js", new Date());
       gtag("config", "G-H5DLMN5L51", { debug_mode: true });
 
-      // Esta función envía el evento a Google
       function trackNavigation() {
-        const hash = window.location.hash || "#inicio";
-        console.log("Enviando evento para:", hash); 
-        gtag("event", "page_view", {
-          page_title: document.title + " - " + hash,
-          page_location: window.location.href,
-          page_path: window.location.pathname + hash,
-        });
+        // Un pequeño respiro para que history.pushState termine
+        setTimeout(() => {
+          const currentHash = window.location.hash || "#inicio";
+          console.log("Capturando sección:", currentHash);
+
+          gtag("event", "page_view", {
+            page_title: document.title + " - " + currentHash,
+            page_location: window.location.href,
+            page_path: window.location.pathname + currentHash,
+          });
+        }, 50);
       }
 
-      // 1. Escuchar cuando cambia el hash (clics en el menú)
+      // Escuchamos el cambio de hash (ahora forzado por el Navigation.astro)
       window.addEventListener("hashchange", trackNavigation);
 
-      // 2. Escuchar clics directos por si el hashchange falla
-      document.addEventListener("click", (event) => {
-        const anchor = event.target.closest("a");
-        if (anchor && anchor.hash) {
-          // Pequeño delay para dejar que la URL cambie antes de disparar
-          setTimeout(trackNavigation, 100);
-        }
-      });
+      // Captura inicial
+      trackNavigation();
     </script>
     <title>{title}</title>
     <script>
