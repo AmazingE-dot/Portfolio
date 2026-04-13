@@ -31,13 +31,12 @@ const {
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
+      gtag("config", "G-H5DLMN5L51", { debug_mode: true });
 
-      // Configuración inicial
-      gtag("config", "G-H5DLMN5L51", { 'debug_mode': true });
-
-      // --- NUEVA LÓGICA PARA RASTREAR EL SCROLL POR SECCIONES (#) ---
-      function trackHashChange() {
+      // Esta función envía el evento a Google
+      function trackNavigation() {
         const hash = window.location.hash || "#inicio";
+        console.log("Enviando evento para:", hash); 
         gtag("event", "page_view", {
           page_title: document.title + " - " + hash,
           page_location: window.location.href,
@@ -45,8 +44,17 @@ const {
         });
       }
 
-      // Detecta cuando el usuario hace clic en Inicio, Proyectos, etc.
-      window.addEventListener("hashchange", trackHashChange);
+      // 1. Escuchar cuando cambia el hash (clics en el menú)
+      window.addEventListener("hashchange", trackNavigation);
+
+      // 2. Escuchar clics directos por si el hashchange falla
+      document.addEventListener("click", (event) => {
+        const anchor = event.target.closest("a");
+        if (anchor && anchor.hash) {
+          // Pequeño delay para dejar que la URL cambie antes de disparar
+          setTimeout(trackNavigation, 100);
+        }
+      });
     </script>
     <title>{title}</title>
     <script>
